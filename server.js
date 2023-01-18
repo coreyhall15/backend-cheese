@@ -13,6 +13,7 @@ const app = express();
 // import mongoose
 const mongoose = require("mongoose");
 // import middlware
+const Schema = mongoose.Schema;
 const cors = require("cors");
 const morgan = require("morgan");
 
@@ -33,7 +34,7 @@ mongoose.connection
 ///////////////////////////////
 // MODELS
 ////////////////////////////////
-const CheeseSchema = new mongoose.Schema({
+const CheeseSchema = new Schema({
   name: String,
   image: String,
   countryOforgin: String
@@ -93,7 +94,7 @@ app.put("/cheese/:id", async (req, res) => {
 });
 
 // Cheese Delete ROUTE
-app.delete("/people/:id", async (req, res) => {
+app.delete("/cheese/:id", async (req, res) => {
   try {
     // send all Cheese
     res.json(await Cheese.findByIdAndRemove(req.params.id));
@@ -103,7 +104,7 @@ app.delete("/people/:id", async (req, res) => {
   }
 });
 
-// Cheese INDEX ROUTE
+// Cheese Show ROUTE
 app.get("/cheese/:id", async (req, res) => {
     try {
       // send all cheese
